@@ -70,7 +70,6 @@ public class InputStreamImageSource extends AbstractImageSource<InputStream> {
 
         is = new ByteArrayInputStream(baos.toByteArray());
 
-
         ImageInputStream iis = ImageIO.createImageInputStream(is);
 
         if (iis == null) {
@@ -90,11 +89,10 @@ public class InputStreamImageSource extends AbstractImageSource<InputStream> {
         inputFormatName = reader.getFormatName();
 
         try {
-            if (param.useExifOrientation()) {
+            if (param != null && param.useExifOrientation()) {
                 InputStream exifIs = new ByteArrayInputStream(baos.toByteArray());
                 Orientation orientation;
-                orientation =
-                        ExifUtils.getExifOrientation(exifIs);
+                orientation = ExifUtils.getExifOrientation(exifIs);
 
                 // Skip this code block if there's no rotation needed.
                 if (orientation != null && orientation != Orientation.TOP_LEFT) {
@@ -107,9 +105,8 @@ public class InputStreamImageSource extends AbstractImageSource<InputStream> {
                 }
             }
         } catch (Exception e) {
-            // If something goes wrong, then skip the orientation-related
-            // processing.
-            // TODO Ought to have some way to track errors.
+            System.out.println("Exception thrown when reading the exif data, ignoring orientation.");
+            e.printStackTrace();
         }
 
         BufferedImage img;

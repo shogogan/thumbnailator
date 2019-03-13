@@ -1,8 +1,8 @@
 _*December 1, 2014: Thumbnailator 0.4.8 has just been released!
-See [Changes](https://github.com/coobird/thumbnailator/wiki/Changes) for details.*_
+See [Changes](https://github.com/SeniorSA/thumbnailator/wiki/Changes) for details.*_
 
 _*Thumbnailator is now available through
-[Maven](https://github.com/coobird/thumbnailator/wiki/Maven)!*_
+[Maven](https://github.com/SeniorSA/thumbnailator/wiki/Maven)!*_
 
 # What is Thumbnailator?
 
@@ -47,9 +47,9 @@ through `Graphics2D` objects. _Thumbnailator_ does all of that for you.
 
 The following pages have more information on what _Thumbnailator_ can do:
 
-* [Features](https://github.com/coobird/thumbnailator/wiki/Features)
-* [Examples](https://github.com/coobird/thumbnailator/wiki/Examples)
-* [Thumbnailator API Documentation](https://coobird.github.io/thumbnailator/javadoc/0.4.8/)
+* [Features](https://github.com/SeniorSA/thumbnailator/wiki/Features)
+* [Examples](https://github.com/SeniorSA/thumbnailator/wiki/Examples)
+* [Thumbnailator API Documentation](https://SeniorSA.github.io/thumbnailator/javadoc/0.4.8/)
 
 # Disclaimer
 *Thumbnailator is still early in its development, and the APIs are subject to
