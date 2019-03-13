@@ -118,7 +118,7 @@ public class FileImageSource extends AbstractImageSource<File>
 			{
 				Orientation orientation;
 				orientation =
-						ExifUtils.getExifOrientation(reader, FIRST_IMAGE_INDEX);
+						ExifUtils.getExifOrientation(sourceFile);
 				
 				// Skip this code block if there's no rotation needed.
 				if (orientation != null && orientation != Orientation.TOP_LEFT)

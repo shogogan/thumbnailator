@@ -1,6 +1,8 @@
 package net.coobird.thumbnailator.util.exif;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
@@ -10,6 +12,12 @@ import javax.imageio.metadata.IIOMetadataNode;
 
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import com.drew.imaging.ImageMetadataReader;
+import com.drew.imaging.ImageProcessingException;
+import com.drew.metadata.Directory;
+import com.drew.metadata.Metadata;
+import com.drew.metadata.MetadataException;
 
 /**
  * An utility class used to obtain the orientation information from a given
@@ -27,6 +35,27 @@ public final class ExifUtils
 	 * This class should not be instantiated.
 	 */
 	private ExifUtils() {};
+
+	public static Orientation getExifOrientation(File file) throws ImageProcessingException, IOException, MetadataException {
+		final Metadata metadata = ImageMetadataReader.readMetadata(file);
+		for (Directory directory : metadata.getDirectories()) {
+			if (directory.containsTag(0x112)) {
+				return Orientation.typeOf(directory.getInt(0x112));
+			}
+		}
+		return null;
+	}
+
+	public static Orientation getExifOrientation(InputStream is) throws ImageProcessingException, IOException, MetadataException {
+		final Metadata metadata = ImageMetadataReader.readMetadata(is);
+		for (Directory directory : metadata.getDirectories()) {
+			if (directory.containsTag(0x112)) {
+				return Orientation.typeOf(directory.getInt(0x112));
+			}
+		}
+		return null;
+	}
+
 	
 	/**
 	 * Returns the orientation obtained from the Exif metadata.

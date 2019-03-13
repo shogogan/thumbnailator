@@ -15,10 +15,10 @@ import net.coobird.thumbnailator.resizers.ResizerFactory;
 
 /**
  * A builder for generating {@link ThumbnailParameter}.
- * <p>
+ * <p></p>
  * The default values assigned to the {@link ThumbnailParameter} created by
  * the {@link ThumbnailParameterBuilder} are as follows:
- * <p>
+ * <p></p>
  * <dl>
  * <dt>width</dt>
  * <dd>Unassigned. Must be set by the {@link #size(int, int)} method.</dd>
@@ -51,7 +51,7 @@ import net.coobird.thumbnailator.resizers.ResizerFactory;
  * <dt>use of Exif metadata for orientation</dt>
  * <dd>Use the Exif metadata to determine the orientation of the thumbnail.</dd>
  * </dl>
- * 
+ *
  * @author coobird
  *
  */

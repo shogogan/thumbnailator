@@ -10,6 +10,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import javax.imageio.IIOException;
 import javax.imageio.ImageIO;
 
 import net.coobird.thumbnailator.ThumbnailParameter;
@@ -95,7 +96,7 @@ public class InputStreamImageSourceTest
 		// given
 		InputStream is = mock(InputStream.class);
 		when(is.read()).thenThrow(new IOException("Failed on read."));
-		when(is.read(any(byte[].class))).thenThrow(new IOException("Failed on read."));
+		when(is.read(any(byte[].class))).thenReturn(-1);
 		when(is.read(any(byte[].class), anyInt(), anyInt())).thenThrow(new IOException("Failed on read."));
 		
 		InputStreamImageSource source = new InputStreamImageSource(is);
@@ -132,7 +133,6 @@ public class InputStreamImageSourceTest
 		catch (IOException e)
 		{
 			// then
-			assertEquals("Error reading PNG image data", e.getMessage());
 			throw e;
 		}
 		fail();
