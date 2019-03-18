@@ -14,30 +14,28 @@ import org.junit.Test;
 
 /**
  * Tests for the {@link Watermark} filter.
- * 
- * @author coobird
  *
+ * @author coobird
  */
-public class WatermarkTest
-{
-	/**
-	 * Checks that the input image contents are not altered.
-	 */
-	@Test
-	public void inputContentsAreNotAltered()
-	{
-		// given
-		BufferedImage originalImage = new BufferedImage(200, 200, BufferedImage.TYPE_INT_ARGB);
-		BufferedImage copyImage = BufferedImages.copy(originalImage);
-		
-		BufferedImage watermarkImg = new BufferedImage(50, 50, BufferedImage.TYPE_INT_ARGB);
-		
-		ImageFilter filter = new Watermark(Positions.BOTTOM_CENTER, watermarkImg, 0.5f);
-		
-		// when
-		filter.apply(originalImage);
-		
-		// then
-		assertTrue(BufferedImageComparer.isSame(originalImage, copyImage));
-	}
+public class WatermarkTest {
+
+    /**
+     * Checks that the input image contents are not altered.
+     */
+    @Test
+    public void inputContentsAreNotAltered() {
+        // given
+        BufferedImage originalImage = new BufferedImage(200, 200, BufferedImage.TYPE_INT_ARGB);
+        BufferedImage copyImage = BufferedImages.copy(originalImage);
+
+        BufferedImage watermarkImg = new BufferedImage(50, 50, BufferedImage.TYPE_INT_ARGB);
+
+        ImageFilter filter = new Watermark(Positions.BOTTOM_CENTER, watermarkImg, 0.5f);
+
+        // when
+        filter.apply(originalImage);
+
+        // then
+        assertTrue(BufferedImageComparer.isSame(originalImage, copyImage));
+    }
 }

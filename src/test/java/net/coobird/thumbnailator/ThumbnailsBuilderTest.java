@@ -1,8 +1,14 @@
 package net.coobird.thumbnailator;
 
-import static org.junit.Assert.*;
-import static org.mockito.Matchers.*;
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -15,6 +21,10 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import javax.imageio.ImageIO;
+
+import org.junit.Test;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Mockito;
 
 import net.coobird.thumbnailator.builders.BufferedImageBuilder;
 import net.coobird.thumbnailator.geometry.AbsoluteSize;
@@ -32,10 +42,6 @@ import net.coobird.thumbnailator.resizers.configurations.Dithering;
 import net.coobird.thumbnailator.resizers.configurations.Rendering;
 import net.coobird.thumbnailator.resizers.configurations.ScalingMode;
 import net.coobird.thumbnailator.test.BufferedImageComparer;
-
-import org.junit.Test;
-import org.mockito.ArgumentCaptor;
-
 
 /**
  * A class which tests the behavior of the builder interface of the
@@ -3449,7 +3455,7 @@ public class ThumbnailsBuilderTest
 	{
 		// given
 		Rename rename = mock(Rename.class);
-		when(rename.apply(anyString(), any(ThumbnailParameter.class)))
+		when(rename.apply(Mockito.anyString(), Mockito.any(ThumbnailParameter.class)))
 			.thenReturn("thumbnail.grid.png");
 		
 		File f = new File("src/test/resources/Thumbnailator/grid.png");
@@ -3463,7 +3469,7 @@ public class ThumbnailsBuilderTest
 		ArgumentCaptor<ThumbnailParameter> ac =
 			ArgumentCaptor.forClass(ThumbnailParameter.class);
 		
-		verify(rename).apply(eq(f.getName()), ac.capture());
+		verify(rename).apply(Mockito.eq(f.getName()), ac.capture());
 		assertEquals(new Dimension(50, 50), ac.getValue().getSize());
 		
 		// clean up
@@ -3988,7 +3994,7 @@ public class ThumbnailsBuilderTest
 		BufferedImage img = new BufferedImageBuilder(200, 200).build();
 		ResizerFactory resizerFactory = mock(ResizerFactory.class);
 		when(
-				resizerFactory.getResizer(any(Dimension.class), any(Dimension.class))
+				resizerFactory.getResizer(Mockito.any(Dimension.class), Mockito.any(Dimension.class))
 			).thenReturn(Resizers.NULL);
 		
 		// when

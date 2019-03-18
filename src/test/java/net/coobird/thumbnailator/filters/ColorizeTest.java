@@ -14,28 +14,26 @@ import org.junit.Test;
 
 /**
  * Tests for the {@link Colorize} filter.
- * 
- * @author coobird
  *
+ * @author coobird
  */
-public class ColorizeTest
-{
-	/**
-	 * Checks that the input image contents are not altered.
-	 */
-	@Test
-	public void inputContentsAreNotAltered()
-	{
-		// given
-		BufferedImage originalImage = new BufferedImage(200, 200, BufferedImage.TYPE_INT_ARGB);
-		BufferedImage copyImage = BufferedImages.copy(originalImage);
-		
-		ImageFilter filter = new Colorize(Color.blue);
-		
-		// when
-		filter.apply(originalImage);
-		
-		// then
-		assertTrue(BufferedImageComparer.isSame(originalImage, copyImage));
-	}
+public class ColorizeTest {
+
+    /**
+     * Checks that the input image contents are not altered.
+     */
+    @Test
+    public void inputContentsAreNotAltered() {
+        // given
+        BufferedImage originalImage = new BufferedImage(200, 200, BufferedImage.TYPE_INT_ARGB);
+        BufferedImage copyImage = BufferedImages.copy(originalImage);
+
+        ImageFilter filter = new Colorize(Color.blue);
+
+        // when
+        filter.apply(originalImage);
+
+        // then
+        assertTrue(BufferedImageComparer.isSame(originalImage, copyImage));
+    }
 }

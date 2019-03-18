@@ -21,6 +21,8 @@ import net.coobird.thumbnailator.test.BufferedImageComparer;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.mockito.Mockito;
+
 import static org.mockito.Mockito.*;
 
 import static org.junit.Assert.*;
@@ -361,7 +363,7 @@ public class FileImageSinkTest
 		when(spi.getFormatNames()).thenReturn(new String[] {"foo", "FOO"});
 		when(spi.getFileSuffixes()).thenReturn(new String[] {"foo", "FOO"});
 		when(spi.createWriterInstance()).thenReturn(writer);
-		when(spi.createWriterInstance(anyObject())).thenReturn(writer);
+		when(spi.createWriterInstance(Mockito.any())).thenReturn(writer);
 		IIORegistry.getDefaultInstance().registerServiceProvider(spi);
 		
 		File outputFile = new File(TMPDIR, "test.foo");

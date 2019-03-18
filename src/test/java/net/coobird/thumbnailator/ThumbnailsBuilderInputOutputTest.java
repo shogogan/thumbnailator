@@ -65,28 +65,27 @@ public class ThumbnailsBuilderInputOutputTest
 	 * <li>Processing completes successfully. Image format is determined
 	 * by the extension of the file.</li>
 	 * </ol>
-	 */	
+	 */
 	@Test
-	public void of_BufferedImage_toFile_File_NoOutputFormatSpecified() throws IOException
-	{
+	public void of_BufferedImage_toFile_File_NoOutputFormatSpecified() throws IOException {
 		// given
 		BufferedImage img = new BufferedImageBuilder(200, 200).build();
 		File destFile = new File("src/test/resources/Thumbnailator/tmp.png");
 		destFile.deleteOnExit();
-		
+
 		// when
 		Thumbnails.of(img)
-			.size(100, 100)
-			.toFile(destFile);
-		
+				.size(100, 100)
+				.toFile(destFile);
+
 		// then
 		assertEquals("png", TestUtils.getFormatName(new FileInputStream(destFile)));
-		
+
 		BufferedImage thumbnail = ImageIO.read(destFile);
 		assertEquals(100, thumbnail.getWidth());
 		assertEquals(100, thumbnail.getHeight());
 	}
-	
+
 	/**
 	 * Test for the {@link Thumbnails.Builder} class where,
 	 * <ol>

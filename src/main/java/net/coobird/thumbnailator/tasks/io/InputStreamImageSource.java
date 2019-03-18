@@ -133,6 +133,8 @@ public class InputStreamImageSource extends AbstractImageSource<InputStream> {
                 width > 1800 && height > 1800 &&
                 (width * height * 4 > Runtime.getRuntime().freeMemory() / 4)
         ) {
+            System.out.println(width * height * 4 );
+            System.out.println(Runtime.getRuntime().freeMemory() / 4);
             int subsampling = 1;
 
             // Calculate the maximum subsampling that can be used.
@@ -151,14 +153,10 @@ public class InputStreamImageSource extends AbstractImageSource<InputStream> {
             // If scaling factor based resize is used, need to change the scaling factor.
             if (param.getSize() == null) {
                 try {
-                    Class<?> c = param.getClass();
-                    Field heightField = c.getDeclaredField("heightScalingFactor");
-                    Field widthField = c.getDeclaredField("widthScalingFactor");
-                    heightField.setAccessible(true);
-                    widthField.setAccessible(true);
-                    heightField.set(param, param.getHeightScalingFactor() * (double) subsampling);
-                    widthField.set(param, param.getWidthScalingFactor() * (double) subsampling);
+                    param.widthScalingFactor = param.getWidthScalingFactor() * (double) subsampling;
+                    param.heightScalingFactor = param.getHeightScalingFactor() * (double) subsampling;
                 } catch (Exception e) {
+                    System.out.println("exception");
                     // If we can't update the parameter, then disable subsampling.
                     subsampling = 1;
                 }

@@ -18,14 +18,11 @@ import com.drew.metadata.MetadataException;
  */
 public final class ExifUtils {
 
-
     /**
      * This class should not be instantiated.
      */
     private ExifUtils() {
     }
-
-    ;
 
     /**
      * Returns the orientation obtained from the Exif metadata

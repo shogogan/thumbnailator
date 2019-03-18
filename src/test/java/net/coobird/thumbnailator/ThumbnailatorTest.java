@@ -34,6 +34,7 @@ import net.coobird.thumbnailator.tasks.io.BufferedImageSource;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
+import org.mockito.Mockito;
 
 import static org.mockito.Matchers.*;
 import static org.mockito.Mockito.*;
@@ -1318,8 +1319,8 @@ public class ThumbnailatorTest
 		 */
 		InputStream is = mock(InputStream.class);
 		doThrow(new IOException("read error!")).when(is).read();
-		doThrow(new IOException("read error!")).when(is).read((byte[])any());
-		doThrow(new IOException("read error!")).when(is).read((byte[])any(), anyInt(), anyInt());
+		doThrow(new IOException("read error!")).when(is).read((byte[]) Mockito.any());
+		doThrow(new IOException("read error!")).when(is).read((byte[])Mockito.any(), Mockito.anyInt(), Mockito.anyInt());
 		
 		ByteArrayOutputStream os = new ByteArrayOutputStream();
 		
@@ -1351,9 +1352,9 @@ public class ThumbnailatorTest
 		InputStream is = new ByteArrayInputStream(bytes);
 		
 		OutputStream os = mock(OutputStream.class);
-		doThrow(new IOException("write error!")).when(os).write(anyInt());
-		doThrow(new IOException("write error!")).when(os).write((byte[])any());
-		doThrow(new IOException("write error!")).when(os).write((byte[])any(), anyInt(), anyInt());
+		doThrow(new IOException("write error!")).when(os).write(Mockito.anyInt());
+		doThrow(new IOException("write error!")).when(os).write((byte[])Mockito.any());
+		doThrow(new IOException("write error!")).when(os).write((byte[])Mockito.any(), Mockito.anyInt(), Mockito.anyInt());
 		
 		Thumbnailator.createThumbnail(is, os, 50, 50);
 		
@@ -2041,8 +2042,8 @@ public class ThumbnailatorTest
 		 */
 		InputStream is = mock(InputStream.class);
 		doThrow(new IOException("read error!")).when(is).read();
-		doThrow(new IOException("read error!")).when(is).read((byte[])any());
-		doThrow(new IOException("read error!")).when(is).read((byte[])any(), anyInt(), anyInt());
+		doThrow(new IOException("read error!")).when(is).read((byte[])Mockito.any());
+		doThrow(new IOException("read error!")).when(is).read((byte[])Mockito.any(), Mockito.anyInt(), Mockito.anyInt());
 		
 		ByteArrayOutputStream os = new ByteArrayOutputStream();
 		
@@ -2074,9 +2075,9 @@ public class ThumbnailatorTest
 		InputStream is = new ByteArrayInputStream(bytes);
 		
 		OutputStream os = mock(OutputStream.class);
-		doThrow(new IOException("write error!")).when(os).write(anyInt());
-		doThrow(new IOException("write error!")).when(os).write((byte[])any());
-		doThrow(new IOException("write error!")).when(os).write((byte[])any(), anyInt(), anyInt());
+		doThrow(new IOException("write error!")).when(os).write(Mockito.anyInt());
+		doThrow(new IOException("write error!")).when(os).write((byte[])Mockito.any());
+		doThrow(new IOException("write error!")).when(os).write((byte[])Mockito.any(), Mockito.anyInt(), Mockito.anyInt());
 		
 		Thumbnailator.createThumbnail(is, os, "png", 50, 50);
 		
@@ -3553,7 +3554,7 @@ public class ThumbnailatorTest
 	{
 		// given
 		Rename rename = mock(Rename.class);
-		when(rename.apply(anyString(), any(ThumbnailParameter.class)))
+		when(rename.apply(Mockito.anyString(), Mockito.any(ThumbnailParameter.class)))
 			.thenReturn("thumbnail.grid.png");
 				
 		File f = new File("src/test/resources/Thumbnailator/grid.png");
@@ -3565,7 +3566,7 @@ public class ThumbnailatorTest
 		ArgumentCaptor<ThumbnailParameter> ac =
 			ArgumentCaptor.forClass(ThumbnailParameter.class);
 		
-		verify(rename).apply(eq(f.getName()), ac.capture());
+		verify(rename).apply(Mockito.eq(f.getName()), ac.capture());
 		assertEquals(new Dimension(50, 50), ac.getValue().getSize());
 		
 		// clean up
@@ -3577,7 +3578,7 @@ public class ThumbnailatorTest
 	{
 		// given
 		Rename rename = mock(Rename.class);
-		when(rename.apply(anyString(), any(ThumbnailParameter.class)))
+		when(rename.apply(Mockito.anyString(), Mockito.any(ThumbnailParameter.class)))
 			.thenReturn("thumbnail.grid.png");
 		
 		File f = new File("src/test/resources/Thumbnailator/grid.png");
@@ -3589,7 +3590,7 @@ public class ThumbnailatorTest
 		ArgumentCaptor<ThumbnailParameter> ac =
 			ArgumentCaptor.forClass(ThumbnailParameter.class);
 		
-		verify(rename).apply(eq(f.getName()), ac.capture());
+		verify(rename).apply(Mockito.eq(f.getName()), ac.capture());
 		assertEquals(new Dimension(50, 50), ac.getValue().getSize());
 		
 		// clean up
